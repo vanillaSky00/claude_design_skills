@@ -29,8 +29,18 @@ constraints:
   - ALWAYS ask the user for theme preference (white / black / custom) before rendering
     if they have not already specified one
   - ALWAYS use the outer wrapper pattern exactly as specified
-  - Chart.js datasets: colors must be hardcoded hex, never CSS variables
-  - Mermaid themeVariables: all color fields must be hardcoded hex
+  - HTML-FIRST — default output is plain HTML + inline CSS so every value stays
+    editable in place and text reflows without overlapping
+  - NEVER hand-code <svg> with calculated x/y coordinates — it is brittle, overlaps,
+    and is not editable. Build flowcharts/diagrams from HTML boxes connected with
+    arrow glyphs / CSS borders (see HTML Flowcharts section)
+  - NEVER output <canvas> or Chart.js — canvas is a bitmap with zero editability.
+    Charts are built from HTML divs sized with %/flex/grid (see HTML Charts section)
+  - Mermaid is the ONLY allowed non-HTML renderer, and ONLY for genuinely complex
+    graphs that need auto-layout (many nodes / crossing edges). When used it must have
+    hardcoded hex colors + a UTF-8 standalone wrapper, and you must tell the user it is
+    edit-source-and-re-render (needs the mermaid runtime, won't paste into Canva/Figma)
+  - The only other acceptable non-HTML graphic is a real raster image (<img>) the user supplied
 escalation:
   - If user requests a brand color not in the palette, ask for the hex value explicitly
   - If user requests a style that cannot be achieved with the safe palette, say so
@@ -383,35 +393,188 @@ Syntax roles (same hex in both themes):
 
 ---
 
-## Special Rules for Chart.js (screenshot-safe)
+## HTML Flowcharts & Pipelines (no SVG)
 
-Chart.js resolves colors at render time. CSS variables are NOT resolved inside a canvas.
+Build pipelines from HTML boxes joined by arrow glyphs (`→ ↓ ⌄`) or thin CSS-border
+connectors. Text lives in real `<div>`s, so it stays editable and reflows — no overlap,
+no coordinate math. Use these for almost every "flowchart / pipeline / SFT流程图" request.
 
-```javascript
-// WRONG — colors will be empty strings in canvas
-backgroundColor: 'var(--color-background-info)'
+### Horizontal pipeline (A → B → C)
 
-// CORRECT — always hardcode hex in Chart.js datasets
-backgroundColor: '#E6F1FB'
-borderColor: '#378ADD'
+```html
+<div style="display:flex;align-items:stretch;gap:0;flex-wrap:wrap">
 
-// Also hardcode tick/grid/axis colors in scales:
-scales: {
-  x: {
-    ticks: { color: '#888780' },        // NOT var(--)
-    grid:  { color: '#F1EFE8' },        // NOT var(--)
-    border:{ color: '#D3D1C7' }         // NOT var(--)
-  }
-}
+  <!-- step -->
+  <div style="flex:1;min-width:120px;background:#E6F1FB;border:1px solid #378ADD;
+              border-radius:8px;padding:12px 14px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;
+                letter-spacing:.05em;color:#185FA5;margin-bottom:4px">Step 1</div>
+    <div style="font-size:12px;font-weight:600;color:#2C2C2A;margin-bottom:3px">数据准备</div>
+    <div style="font-size:10.5px;color:#5F5E5A;line-height:1.5">收集与清洗指令-回答对</div>
+  </div>
+
+  <!-- connector -->
+  <div style="display:flex;align-items:center;justify-content:center;
+              padding:0 8px;font-size:18px;color:#B4B2A9;flex-shrink:0">→</div>
+
+  <div style="flex:1;min-width:120px;background:#E1F5EE;border:1px solid #1D9E75;
+              border-radius:8px;padding:12px 14px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;
+                letter-spacing:.05em;color:#0F6E56;margin-bottom:4px">Step 2</div>
+    <div style="font-size:12px;font-weight:600;color:#2C2C2A;margin-bottom:3px">监督微调</div>
+    <div style="font-size:10.5px;color:#5F5E5A;line-height:1.5">在预训练模型上做 SFT</div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:center;
+              padding:0 8px;font-size:18px;color:#B4B2A9;flex-shrink:0">→</div>
+
+  <div style="flex:1;min-width:120px;background:#EEEDFE;border:1px solid #7F77DD;
+              border-radius:8px;padding:12px 14px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;
+                letter-spacing:.05em;color:#534AB7;margin-bottom:4px">Step 3</div>
+    <div style="font-size:12px;font-weight:600;color:#2C2C2A;margin-bottom:3px">评估部署</div>
+    <div style="font-size:10.5px;color:#5F5E5A;line-height:1.5">在留出集上评估并上线</div>
+  </div>
+
+</div>
 ```
+
+### Vertical pipeline / timeline (↓ between stages)
+
+```html
+<div style="display:flex;flex-direction:column;gap:0">
+
+  <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-left:3px solid #378ADD;
+              border-radius:6px;padding:12px 14px">
+    <div style="font-size:12px;font-weight:600;color:#2C2C2A">阶段一 · 数据准备</div>
+    <div style="font-size:10.5px;color:#5F5E5A;line-height:1.5;margin-top:3px">
+      收集指令、人工标注、去重清洗。</div>
+  </div>
+
+  <!-- down connector -->
+  <div style="text-align:center;font-size:16px;color:#B4B2A9;line-height:1.4">↓</div>
+
+  <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-left:3px solid #1D9E75;
+              border-radius:6px;padding:12px 14px">
+    <div style="font-size:12px;font-weight:600;color:#2C2C2A">阶段二 · 监督微调</div>
+    <div style="font-size:10.5px;color:#5F5E5A;line-height:1.5;margin-top:3px">
+      在基座模型上用指令对做 SFT。</div>
+  </div>
+
+</div>
+```
+
+### Branching (one input → two outputs)
+
+```html
+<div style="display:flex;align-items:center;gap:0">
+  <div style="background:#F1EFE8;border:1px solid #D3D1C7;border-radius:8px;
+              padding:12px 14px;font-size:12px;font-weight:600;color:#2C2C2A">输入</div>
+  <div style="padding:0 8px;font-size:18px;color:#B4B2A9">→</div>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="background:#E1F5EE;border:1px solid #1D9E75;border-radius:8px;
+                padding:8px 12px;font-size:11.5px;color:#0F6E56;font-weight:600">分支 A · 接受</div>
+    <div style="background:#FCEBEB;border:1px solid #E24B4A;border-radius:8px;
+                padding:8px 12px;font-size:11.5px;color:#A32D2D;font-weight:600">分支 B · 拒绝</div>
+  </div>
+</div>
+```
+
+Tips:
+- Use the semantic palette to color stages (info → success → orchestrator reads as a flow).
+- `flex:1` + `min-width` lets boxes shrink evenly and wrap on narrow widths instead of clipping.
+- For black theme, swap box bg to the border color and text to `#ffffff` (per palette rule).
 
 ---
 
-## Special Rules for Mermaid (screenshot-safe)
+## HTML Charts (no canvas)
 
-Mermaid's `themeVariables` must also be hardcoded. Additionally, force
-`darkMode: false` regardless of system preference, and set `background: '#ffffff'`
-(or `'#0f0f0f'` for black theme) explicitly on the rendered SVG after generation.
+Bars are `<div>`s sized with `%` widths or `flex` — fully editable, no Chart.js, no canvas.
+
+### Horizontal bar chart
+
+```html
+<div style="display:flex;flex-direction:column;gap:10px">
+
+  <!-- one row: label + track + value -->
+  <div style="display:grid;grid-template-columns:90px 1fr 44px;align-items:center;gap:10px">
+    <div style="font-size:11px;color:#5F5E5A;text-align:right">GPT-4</div>
+    <div style="background:#F1EFE8;border-radius:5px;height:18px;overflow:hidden">
+      <div style="width:86%;height:100%;background:#378ADD;border-radius:5px"></div>
+    </div>
+    <div style="font-size:11px;font-weight:600;color:#2C2C2A">86%</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:90px 1fr 44px;align-items:center;gap:10px">
+    <div style="font-size:11px;color:#5F5E5A;text-align:right">Ours</div>
+    <div style="background:#F1EFE8;border-radius:5px;height:18px;overflow:hidden">
+      <div style="width:79%;height:100%;background:#1D9E75;border-radius:5px"></div>
+    </div>
+    <div style="font-size:11px;font-weight:600;color:#2C2C2A">79%</div>
+  </div>
+
+</div>
+```
+
+### Vertical bar chart (columns)
+
+```html
+<div style="display:flex;align-items:flex-end;gap:14px;height:160px;
+            border-bottom:1px solid #D3D1C7;padding:0 6px">
+
+  <!-- each column: bar grows from bottom; height % of the 160px track -->
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;
+              justify-content:flex-end;height:100%;gap:6px">
+    <div style="font-size:10px;font-weight:600;color:#2C2C2A">40</div>
+    <div style="width:100%;height:40%;background:#378ADD;border-radius:5px 5px 0 0"></div>
+    <div style="font-size:10px;color:#888780">Q1</div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;
+              justify-content:flex-end;height:100%;gap:6px">
+    <div style="font-size:10px;font-weight:600;color:#2C2C2A">63</div>
+    <div style="width:100%;height:63%;background:#1D9E75;border-radius:5px 5px 0 0"></div>
+    <div style="font-size:10px;color:#888780">Q2</div>
+  </div>
+
+</div>
+```
+
+### Donut / progress (CSS conic-gradient, not SVG)
+
+```html
+<div style="display:flex;align-items:center;gap:14px">
+  <div style="width:96px;height:96px;border-radius:50%;flex-shrink:0;
+              background:conic-gradient(#1D9E75 0% 72%, #F1EFE8 72% 100%);
+              display:flex;align-items:center;justify-content:center">
+    <div style="width:66px;height:66px;border-radius:50%;background:#ffffff;
+                display:flex;align-items:center;justify-content:center;
+                font-size:16px;font-weight:700;color:#2C2C2A">72%</div>
+  </div>
+  <div style="font-size:11.5px;color:#5F5E5A;line-height:1.6">完成率<br>
+    <span style="color:#0F6E56;font-weight:600">72% 已通过评估</span></div>
+</div>
+```
+
+Notes:
+- Bar `width:NN%` / `height:NN%` is the data value — easy to hand-correct if the AI is wrong.
+- Always show the numeric value as text next to the bar (screenshots lose the axis context).
+- `overflow:hidden` on the track keeps the rounded corners clean.
+
+---
+
+## Mermaid — Complex Graphs Only (last resort)
+
+Use Mermaid **only** when a diagram genuinely needs auto-layout — many nodes, crossing
+edges, a real graph — and the HTML flowchart patterns above would be unmanageable.
+For linear pipelines, comparisons, and simple branches, **always prefer HTML** (editable +
+portable). Before using Mermaid, tell the user the trade-off: it renders to SVG via a JS
+runtime, so it is **edit-source-and-re-render** (not in-place HTML) and **won't render if
+pasted into Canva/Figma/Notion or opened offline** — only the screenshot is portable.
+
+When you do use it, all colors must be hardcoded hex (no CSS variables resolve in the SVG),
+and a standalone file needs the UTF-8 wrapper. Force `darkMode:false` so it never
+inherits the system theme, and set the SVG background explicitly after render:
 
 ```javascript
 mermaid.initialize({
@@ -444,8 +607,10 @@ Run through this mentally before writing widget code:
 - [ ] Font stack is system fonts — no `"Anthropic Sans"`
 - [ ] All borders are `1px` minimum (not `0.5px`)
 - [ ] All text colors are from the approved palette
-- [ ] Chart.js dataset colors are hardcoded hex (if chart present)
-- [ ] Mermaid themeVariables are hardcoded hex + `darkMode:false` (if diagram present)
+- [ ] Output is HTML — no `<canvas>`/Chart.js, no hand-coded `<svg>`
+- [ ] Flowcharts/pipelines use the HTML box + arrow-glyph patterns
+- [ ] Charts use HTML bars/donut (div widths/heights), with the numeric value shown as text
+- [ ] Mermaid used ONLY for a genuinely complex graph → hardcoded hex + `darkMode:false` + user told it's edit-source/re-render
 - [ ] `#F5F9FE` used only for table highlight column bg (white theme only)
 - [ ] `max-width:680px` on outer wrapper
 - [ ] `padding:24px` on outer wrapper

@@ -35,3 +35,7 @@ See all ten in [`screenshot-safe-widget/demo/`](screenshot-safe-widget/demo/) ([
 ## Use it
 
 Ask Claude for a visual you'll capture or export — a slide, table, card, or chart — and pick a theme (**white**, **black**, or custom). Open the resulting `.html` in a browser, tweak any text, then screenshot.
+
+> 💡 **Tip:** writing slide content in English tends to make the skill more successful — non-Latin text (e.g. Chinese) works too, just keep the UTF-8 wrapper.
+>
+> ⚠️ It sometimes outputs SVG instead of HTML — if that happens, just start a new chat and try again.
