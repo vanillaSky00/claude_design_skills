@@ -21,6 +21,11 @@ constraints:
   - NEVER use "Anthropic Sans" or var(--font-sans) as font family
   - NEVER use 0.5px borders — they vanish in screenshots, use 1px minimum
   - NEVER hardcode colors outside the approved palette below
+  - ALWAYS declare UTF-8 when the widget will be saved as a standalone .html file —
+    wrap the fragment in a full document with <meta charset="utf-8"> as the first
+    element in <head>, or non-Latin text (Chinese, Japanese, Korean, emoji) garbles
+  - ALWAYS add CJK font fallbacks to the font-family when the content contains
+    Chinese / Japanese / Korean text, so glyphs render instead of tofu boxes
   - ALWAYS ask the user for theme preference (white / black / custom) before rendering
     if they have not already specified one
   - ALWAYS use the outer wrapper pattern exactly as specified
@@ -130,6 +135,65 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 /* code blocks */
 font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
 ```
+
+### When content contains Chinese / Japanese / Korean text
+
+Append CJK fallbacks so glyphs render with a real font on every OS (otherwise you get
+tofu boxes `□□□` or system-default fallback that looks inconsistent across screenshots):
+
+```css
+/* body / UI with CJK fallback */
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+             'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+             'Noto Sans CJK SC', 'Noto Sans SC', sans-serif;
+```
+
+Order covers macOS (`PingFang SC`), older macOS (`Hiragino Sans GB`),
+Windows (`Microsoft YaHei`), and Linux / web (`Noto Sans CJK SC`).
+For Traditional Chinese swap in `'PingFang TC'`, for Japanese `'Hiragino Kaku Gothic ProN'`,
+for Korean `'Apple SD Gothic Neo'` / `'Malgun Gothic'`.
+
+---
+
+## UTF-8 / Non-Latin Text — Standalone Files (required for CJK & emoji)
+
+A screenshot-safe widget is an HTML **fragment** (a top-level `<div>`). Inside claude.ai's
+`show_widget` the host page declares the encoding, so CJK renders fine. But the moment the
+fragment is **saved to a standalone `.html` file and opened via `file://`**, there is no
+charset declaration — the browser guesses (often Windows-1252 or the OS locale codepage)
+and misreads the UTF-8 bytes, producing garbled text (乱码 → `æ–‡å­—`).
+
+**Fix:** whenever the output is a file the user will open in a browser (not just shown in
+chat), emit a complete document and put `<meta charset="utf-8">` as the **first element in
+`<head>`** (it must fall within the first 1024 bytes to take effect):
+
+```html
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="margin:0">
+
+  <!-- the usual screenshot-safe widget fragment goes here -->
+  <div style="background:#ffffff;padding:24px;
+              font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
+                          'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;
+              max-width:680px">
+    <div style="font-size:17px;font-weight:700;color:#2C2C2A">中文标题不再乱码</div>
+  </div>
+
+</body>
+</html>
+```
+
+Set `lang` to match the content (`zh` / `zh-Hant` / `ja` / `ko`). The file itself must be
+saved as **UTF-8 (no BOM)** — which is the default when writing the file; do not re-encode
+to GB2312/Big5/Shift-JIS.
+
+For a fragment that stays inside claude.ai only, the wrapper is optional — but adding the
+CJK font fallbacks (above) is always safe and recommended.
 
 ---
 
@@ -385,6 +449,8 @@ Run through this mentally before writing widget code:
 - [ ] `#F5F9FE` used only for table highlight column bg (white theme only)
 - [ ] `max-width:680px` on outer wrapper
 - [ ] `padding:24px` on outer wrapper
+- [ ] If saved as a standalone `.html` file → full doc with `<meta charset="utf-8">` first in `<head>`
+- [ ] If content has Chinese/Japanese/Korean text → CJK font fallbacks added + correct `lang`
 
 ---
 
