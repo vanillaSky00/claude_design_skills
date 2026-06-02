@@ -1,0 +1,97 @@
+
+<div style="background:#ffffff;padding:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:680px">
+  <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#B4B2A9;margin-bottom:4px">Slide 10 · Key Takeaways</div>
+  <div style="font-size:17px;font-weight:700;color:#2C2C2A;margin-bottom:2px">Three things this work changed about reasoning AI</div>
+  <div style="font-size:12px;color:#888780;margin-bottom:18px">What the field now knows that it didn't before 2025</div>
+
+  <!-- Takeaway 1 -->
+  <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden;margin-bottom:10px">
+    <div style="background:#E1F5EE;padding:9px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #D3D1C7">
+      <div style="width:24px;height:24px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:12px;font-weight:700;color:#fff">1</span></div>
+      <div style="font-size:12px;font-weight:700;color:#0F6E56">Democratisation is real — frontier-level reasoning no longer requires frontier-scale compute</div>
+    </div>
+    <div style="padding:10px 14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.6">Sky-T1 reached o1-preview parity on AIME (43.3 vs 40.0), MATH500 (82.4 vs 81.4), and LiveCodeBench-Med (56.8 vs 54.9) for <strong>$450 — 19 wall-clock hours on 8×H100 (~152 GPU-hours)</strong>. DeepSeek released six distilled checkpoints (1.5B–70B) MIT-licensed with explicit distillation permission. The capital barrier became a data-curation problem.</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:4px;padding:7px;text-align:center">
+          <div style="font-size:20px;font-weight:700;color:#0F6E56">$450</div>
+          <div style="font-size:9px;color:#888780">to match o1-preview on AIME<br>(o1-preview: 40.0, Sky-T1: 43.3)</div>
+        </div>
+        <div style="font-size:9px;color:#888780;font-style:italic">Caveat: parity holds on verifiable math/code. Not on GPQA (Sky-T1 56.8 vs o1-preview 75.2) or open-ended tasks.</div>
+        <div style="font-size:9px;color:#B4B2A9">NovaSky Team (2025) novasky-ai.github.io/posts/sky-t1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Takeaway 2 -->
+  <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden;margin-bottom:10px">
+    <div style="background:#E6F1FB;padding:9px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #D3D1C7">
+      <div style="width:24px;height:24px;border-radius:50%;background:#185FA5;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:12px;font-weight:700;color:#fff">2</span></div>
+      <div style="font-size:12px;font-weight:700;color:#185FA5">The bottleneck shifted — from inventing reasoning to selecting and preserving high-quality traces</div>
+    </div>
+    <div style="padding:10px 14px">
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.6;margin-bottom:8px">Once DeepSeek-R1 exists as an open teacher, the hard problem is no longer "can we afford RL at scale?" It is "can we identify and preserve the teacher's best reasoning traces?"</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+        <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:4px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:#534AB7;margin-bottom:2px">Bespoke verifier fix</div>
+          <div style="font-size:16px;font-weight:700;color:#534AB7">25%→73%</div>
+          <div style="font-size:9px;color:#888780">correct trace retention — bigger lever than any model change</div>
+        </div>
+        <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:4px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:#0F6E56;margin-bottom:2px">Sky-T1 reformat</div>
+          <div style="font-size:16px;font-weight:700;color:#0F6E56">~25%→90%+</div>
+          <div style="font-size:9px;color:#888780">code parse accuracy — trace format is a multiplier</div>
+        </div>
+        <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:4px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:#185FA5;margin-bottom:2px">LIMO / s1</div>
+          <div style="font-size:16px;font-weight:700;color:#185FA5">800–1k</div>
+          <div style="font-size:9px;color:#888780">curated samples beat models trained on 100× more data</div>
+        </div>
+      </div>
+      <div style="font-size:9px;color:#B4B2A9;margin-top:6px">Bespoke Labs (2025) bespokelabs.ai · LIMO arXiv:2502.03387 · s1 arXiv:2501.19393 · NovaSky Team (2025)</div>
+    </div>
+  </div>
+
+  <!-- Takeaway 3 -->
+  <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden;margin-bottom:16px">
+    <div style="background:#FAEEDA;padding:9px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #D3D1C7">
+      <div style="width:24px;height:24px;border-radius:50%;background:#EF9F27;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:12px;font-weight:700;color:#fff">3</span></div>
+      <div style="font-size:12px;font-weight:700;color:#854F0B">Practical rule: without frontier RL budget, distill — don't reinvent</div>
+    </div>
+    <div style="padding:10px 14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div>
+        <div style="font-size:10px;color:#5F5E5A;line-height:1.6;margin-bottom:5px">DeepSeek's controlled experiment compared Qwen2.5-32B trained with 10k+ RL steps vs SFT distillation from R1. RL from scratch <strong>lost on every benchmark</strong>.</div>
+        <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-left:3px solid #854F0B;border-radius:4px;padding:8px;font-size:10px;color:#5F5E5A;font-style:italic;line-height:1.5">"Distilling more powerful models into smaller ones yields excellent results… whereas smaller models relying on large-scale RL may not even achieve the performance of distillation."</div>
+        <div style="font-size:9px;color:#B4B2A9;margin-top:4px">DeepSeek-AI (2025) arXiv:2501.12948v1 Table 6 (= Table 16 in current arXiv)</div>
+      </div>
+      <div>
+        <table style="width:100%;border-collapse:collapse;font-size:9.5px;margin-bottom:6px">
+          <thead>
+            <tr style="border-bottom:1.5px solid #B4B2A9">
+              <th style="padding:4px 5px;color:#888780;font-weight:600;text-align:left;font-size:9px">Model</th>
+              <th style="padding:4px 5px;color:#888780;font-weight:600;text-align:center;font-size:9px">AIME</th>
+              <th style="padding:4px 5px;color:#888780;font-weight:600;text-align:center;font-size:9px">MATH500</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #F1EFE8">
+              <td style="padding:4px 5px;color:#854F0B;font-size:9px">RL-only 32B (10k+ steps)</td>
+              <td style="padding:4px 5px;text-align:center;font-weight:700;color:#854F0B">47.0%</td>
+              <td style="padding:4px 5px;text-align:center;color:#5F5E5A">91.6%</td>
+            </tr>
+            <tr style="background:#F5F9FE">
+              <td style="padding:4px 5px;color:#185FA5;font-size:9px">SFT-distilled 32B</td>
+              <td style="padding:4px 5px;text-align:center;font-weight:700;color:#185FA5">72.6%</td>
+              <td style="padding:4px 5px;text-align:center;color:#185FA5;font-weight:600">94.3%</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="font-size:9px;color:#888780;font-style:italic">Add RL only <em>after</em> distillation if you must push past the teacher ceiling — significant further gains documented at that stage.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:9px;color:#B4B2A9;border-top:1px solid #F1EFE8;padding-top:8px">
+    Sources: DeepSeek-AI (2025) arXiv:2501.12948v1 Table 6 (= Table 16 in current arXiv) · NovaSky Team (2025) novasky-ai.github.io/posts/sky-t1 · Bespoke Labs (2025) bespokelabs.ai/blog/bespoke-stratos · LIMO arXiv:2502.03387 · s1 arXiv:2501.19393
+  </div>
+</div>

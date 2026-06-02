@@ -1,0 +1,94 @@
+
+<div style="background:#ffffff;padding:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:680px">
+  <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#B4B2A9;margin-bottom:4px">Slide 3 · Distillation Methodology Landscape</div>
+  <div style="font-size:17px;font-weight:700;color:#2C2C2A;margin-bottom:2px">SFT, Chain-of-Thought Traces, and RL</div>
+  <div style="font-size:12px;color:#888780;margin-bottom:18px">Three tools — very different tradeoffs</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px">
+    <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden">
+      <div style="background:#E6F1FB;padding:9px 11px;border-bottom:1px solid #D3D1C7">
+        <div style="font-size:9px;font-weight:700;color:#185FA5;text-transform:uppercase;letter-spacing:.05em">Method 1</div>
+        <div style="font-size:12px;font-weight:700;color:#185FA5;margin-top:1px">Supervised Fine-Tuning (SFT)</div>
+      </div>
+      <div style="padding:10px 11px;display:flex;flex-direction:column;gap:5px">
+        <div style="font-size:10px;color:#2C2C2A"><strong>How:</strong> train student on teacher's (input, output) pairs</div>
+        <div style="font-size:10px;color:#5F5E5A">Standard next-token prediction. No reward model. No search.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:3px">
+          <span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#E1F5EE;color:#0F6E56;border:1px solid #1D9E75">Cheap</span>
+          <span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#E1F5EE;color:#0F6E56;border:1px solid #1D9E75">Stable</span>
+          <span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#FCEBEB;color:#A32D2D;border:1px solid #E24B4A">Teacher-bounded</span>
+        </div>
+        <div style="font-size:9px;color:#888780;margin-top:2px;font-style:italic">Used by: Sky-T1, Bespoke-Stratos, R1-Distill series</div>
+      </div>
+    </div>
+
+    <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden">
+      <div style="background:#E1F5EE;padding:9px 11px;border-bottom:1px solid #D3D1C7">
+        <div style="font-size:9px;font-weight:700;color:#0F6E56;text-transform:uppercase;letter-spacing:.05em">Method 2</div>
+        <div style="font-size:12px;font-weight:700;color:#0F6E56;margin-top:1px">Chain-of-Thought Traces</div>
+      </div>
+      <div style="padding:10px 11px;display:flex;flex-direction:column;gap:5px">
+        <div style="font-size:10px;color:#2C2C2A"><strong>How:</strong> teacher generates long internal reasoning paths; student learns the full trace</div>
+        <div style="font-size:10px;color:#5F5E5A">Thousands to tens of thousands of tokens per problem. Exposes <em>how</em> to think, not just the answer.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:3px">
+          <span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#E1F5EE;color:#0F6E56;border:1px solid #1D9E75">Transfers reasoning style</span>
+          <span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#FAEEDA;color:#854F0B;border:1px solid #EF9F27">Quality-sensitive</span>
+        </div>
+        <div style="font-size:9px;color:#888780;margin-top:2px;font-style:italic">The key ingredient in all three labs</div>
+      </div>
+    </div>
+
+    <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden">
+      <div style="background:#FAEEDA;padding:9px 11px;border-bottom:1px solid #D3D1C7">
+        <div style="font-size:9px;font-weight:700;color:#854F0B;text-transform:uppercase;letter-spacing:.05em">Method 3</div>
+        <div style="font-size:12px;font-weight:700;color:#854F0B;margin-top:1px">Reinforcement Learning (RL)</div>
+      </div>
+      <div style="padding:10px 11px;display:flex;flex-direction:column;gap:5px">
+        <div style="font-size:10px;color:#2C2C2A"><strong>How:</strong> model improves via reward signal (GRPO/PPO). No teacher demonstrations needed</div>
+        <div style="font-size:10px;color:#5F5E5A">R1-Zero uses rule-based accuracy reward + format reward — no neural reward model. Can discover novel strategies.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:3px">
+          <span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#E1F5EE;color:#0F6E56;border:1px solid #1D9E75">Can exceed teacher</span>
+          <span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#FCEBEB;color:#A32D2D;border:1px solid #E24B4A">Expensive</span>
+          <span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#FCEBEB;color:#A32D2D;border:1px solid #E24B4A">Length bias</span>
+        </div>
+        <div style="font-size:9px;color:#888780;margin-top:2px;font-style:italic">Used by: R1-Zero (pure), R1 (hybrid SFT+RL)</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#888780;margin-bottom:8px">SFT-distillation vs RL-from-scratch — same Qwen2.5-32B base</div>
+  <table style="width:100%;border-collapse:collapse;font-size:10.5px;margin-bottom:8px">
+    <thead>
+      <tr style="border-bottom:1.5px solid #B4B2A9">
+        <th style="padding:7px 8px;font-weight:600;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#888780;text-align:left">Model</th>
+        <th style="padding:7px 8px;font-weight:600;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#888780;text-align:center">Method</th>
+        <th style="padding:7px 8px;font-weight:600;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#888780;text-align:center">AIME 2024</th>
+        <th style="padding:7px 8px;font-weight:600;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#888780;text-align:center">MATH500</th>
+        <th style="padding:7px 8px;font-weight:600;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#888780;text-align:center">LiveCode Med</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #F1EFE8">
+        <td style="padding:6px 8px;color:#854F0B;font-size:10px;font-weight:600">R1-Zero-Qwen-32B (RL only, 10k+ steps)</td>
+        <td style="padding:6px 8px;text-align:center"><span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#FAEEDA;color:#854F0B;border:1px solid #EF9F27">Pure RL</span></td>
+        <td style="padding:6px 8px;text-align:center;font-weight:700;color:#854F0B">47.0%</td>
+        <td style="padding:6px 8px;text-align:center;color:#5F5E5A">91.6%</td>
+        <td style="padding:6px 8px;text-align:center;color:#5F5E5A">40.2%</td>
+      </tr>
+      <tr style="background:#F5F9FE">
+        <td style="padding:6px 8px;color:#185FA5;font-size:10px;font-weight:600">R1-Distill-Qwen-32B (SFT distillation)</td>
+        <td style="padding:6px 8px;text-align:center"><span style="padding:1px 6px;border-radius:3px;font-size:9px;background:#E6F1FB;color:#185FA5;border:1px solid #378ADD">SFT</span></td>
+        <td style="padding:6px 8px;text-align:center;font-weight:700;color:#185FA5">72.6%</td>
+        <td style="padding:6px 8px;text-align:center;color:#185FA5;font-weight:600">94.3%</td>
+        <td style="padding:6px 8px;text-align:center;color:#185FA5;font-weight:600">57.2%</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-left:3px solid #185FA5;border-radius:4px;padding:9px 12px;margin-bottom:16px">
+    <div style="font-size:10px;color:#444441;line-height:1.5">At 32B scale, SFT distillation <strong>crushes large-scale RL from scratch</strong> on every benchmark. DeepSeek: <em>"distilling more powerful models into smaller ones yields excellent results… whereas smaller models relying on large-scale RL require enormous computational power and may not even achieve the performance of distillation."</em></div>
+  </div>
+
+  <div style="font-size:9px;color:#B4B2A9;border-top:1px solid #F1EFE8;padding-top:8px">
+    Sources: DeepSeek-AI, "DeepSeek-R1," arXiv:2501.12948v1 Table 6 (= Table 16 in current arXiv version) · NovaSky Team (2025) novasky-ai.github.io/posts/sky-t1 · Understanding R1-Zero-Like Training, arXiv:2503.20783
+  </div>
+</div>

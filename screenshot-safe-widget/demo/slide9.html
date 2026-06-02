@@ -1,0 +1,96 @@
+
+<div style="background:#ffffff;padding:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:680px">
+  <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#B4B2A9;margin-bottom:4px">Slide 9 · Limitations & Open Challenges</div>
+  <div style="font-size:17px;font-weight:700;color:#2C2C2A;margin-bottom:2px">What SFT distillation still can't do</div>
+  <div style="font-size:12px;color:#888780;margin-bottom:16px">Teacher ceiling, trace quality bottlenecks, and domain gaps</div>
+
+  <!-- Teacher ceiling -->
+  <div style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#888780;margin-bottom:8px">1 · The teacher ceiling — a hard structural limit</div>
+  <div style="display:grid;grid-template-columns:5fr 3fr;gap:12px;margin-bottom:14px;align-items:start">
+    <div>
+      <div style="position:relative;height:84px;background:#F9F8F5;border:1px solid #D3D1C7;border-radius:6px;overflow:hidden;margin-bottom:6px">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:65%;background:#E6F1FB;border-top:2px dashed #378ADD;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:10px;color:#185FA5;font-weight:600">Student capability zone (SFT)</span>
+        </div>
+        <div style="position:absolute;top:0;left:0;right:0;height:35%;background:#FAEEDA;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:10px;color:#854F0B;font-weight:600">Teacher ceiling — unreachable via SFT alone</span>
+        </div>
+      </div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5">SFT distillation is "a pure imitation process" — the student cannot solve problems beyond the teacher's abilities. Even sampling N=64 times, the teacher still fails on <strong>~13% of hard problems</strong>, silently excluding them from training data and biasing the student toward easier examples.</div>
+      <div style="font-size:9px;color:#888780;margin-top:4px">HEAL, arXiv:2603.10359 (2026) · DeepSeek-AI, arXiv:2501.12948v1 Table 6 (= Table 16 in current arXiv)</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:5px;padding:9px;text-align:center">
+        <div style="font-size:18px;font-weight:700;color:#E24B4A">~13%</div>
+        <div style="font-size:9px;color:#888780;margin-top:1px">hard problems unsolvable even at N=64 teacher samples</div>
+      </div>
+      <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:5px;padding:9px;text-align:center">
+        <div style="font-size:16px;font-weight:700;color:#854F0B">47% → 72.6%</div>
+        <div style="font-size:9px;color:#888780;margin-top:1px">AIME: RL-only 32B vs SFT-distilled 32B — SFT wins, yet stays below R1's 79.8%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 challenge cards -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px">
+
+    <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-left:3px solid #EF9F27;border-radius:5px;padding:10px">
+      <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+        <span style="padding:1px 6px;border-radius:3px;font-size:9px;font-weight:600;background:#FAEEDA;color:#854F0B;border:1px solid #EF9F27">Bias</span>
+        <span style="font-size:10px;font-weight:600;color:#2C2C2A">GRPO length bias</span>
+      </div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5">GRPO normalizes loss by token count, under-penalizing long wrong answers. Models drift toward verbose incorrect responses. "Longer thinking" ≠ better thinking — reward and length can both rise while accuracy stalls.</div>
+      <div style="font-size:9px;color:#888780;margin-top:5px">Dr. GRPO, arXiv:2503.20783 · Between Underthinking and Overthinking, arXiv:2505.00127</div>
+    </div>
+
+    <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-left:3px solid #E24B4A;border-radius:5px;padding:10px">
+      <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+        <span style="padding:1px 6px;border-radius:3px;font-size:9px;font-weight:600;background:#FCEBEB;color:#A32D2D;border:1px solid #E24B4A">Nuanced</span>
+        <span style="font-size:10px;font-weight:600;color:#2C2C2A">Hallucination — pipeline-dependent</span>
+      </div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5"><strong>Distillation-only or RL without cold-start can worsen hallucination</strong> vs the backbone. Full cold-start SFT + RL pipelines (as in R1) can <em>reduce</em> it. Reasoning gains and factuality can move in opposite directions depending on pipeline design.</div>
+      <div style="font-size:9px;color:#888780;margin-top:5px">Are Reasoning Models More Prone to Hallucination?, arXiv:2505.23646 · The Reasoning Trap, arXiv:2510.22977</div>
+    </div>
+
+    <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-left:3px solid #D3D1C7;border-radius:5px;padding:10px">
+      <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+        <span style="padding:1px 6px;border-radius:3px;font-size:9px;font-weight:600;background:#F1EFE8;color:#888780;border:1px solid #D3D1C7">Gap</span>
+        <span style="font-size:10px;font-weight:600;color:#2C2C2A">Domain limitation</span>
+      </div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Gains concentrate in <strong>verifiable domains</strong> (math, code, STEM). DeepSeek-R1 is inferior to DeepSeek-V3 on function calling, structured JSON, role-playing, and multi-turn conversations. Non-math agentic tasks remain weak. Prompt sensitivity: few-shot degrades performance.</div>
+      <div style="font-size:9px;color:#888780;margin-top:5px">DeepSeek-AI, arXiv:2501.12948, §4 limitations</div>
+    </div>
+
+    <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-left:3px solid #D3D1C7;border-radius:5px;padding:10px">
+      <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+        <span style="padding:1px 6px;border-radius:3px;font-size:9px;font-weight:600;background:#F1EFE8;color:#888780;border:1px solid #D3D1C7">Gap</span>
+        <span style="font-size:10px;font-weight:600;color:#2C2C2A">Mimicry vs mastery</span>
+      </div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5">SFT "collapses rich reasoning structure into flat token prediction" — students copy the form, not the teacher's search policy. Small distilled students "mechanically replicate patterns without internalising reasoning logic," producing repetition with no final answer.</div>
+      <div style="font-size:9px;color:#888780;margin-top:5px">RLKD, arXiv:2505.16142 · Marco-o1 v2, arXiv:2503.01461 · <em>Hán Dān Xué Bù (Mimicry) or Qīng Chū Yú Lán (Mastery)?</em> arXiv:2601.05019</div>
+    </div>
+  </div>
+
+  <!-- Trace quality row -->
+  <div style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#888780;margin-bottom:6px">Trace quality bottleneck — what a bad verifier costs</div>
+  <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:5px;padding:10px;margin-bottom:14px">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div style="text-align:center">
+        <div style="font-size:20px;font-weight:700;color:#E24B4A">25%</div>
+        <div style="font-size:9px;color:#888780;margin-top:2px">Sky-T1 regex/sympy: correct traces actually retained</div>
+      </div>
+      <div style="text-align:center;border-left:1px solid #D3D1C7;border-right:1px solid #D3D1C7">
+        <div style="font-size:20px;font-weight:700;color:#1D9E75">73%</div>
+        <div style="font-size:9px;color:#888780;margin-top:2px">Bespoke GPT-4o-mini: correct traces retained after fix</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:20px;font-weight:700;color:#534AB7">+20pp AIME</div>
+        <div style="font-size:9px;color:#888780;margin-top:2px">43.3 → 63.3: better data, not more data</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:9px;color:#B4B2A9;border-top:1px solid #F1EFE8;padding-top:8px">
+    Sources: HEAL arXiv:2603.10359 (2026) · RLKD arXiv:2505.16142 · Dr. GRPO / Understanding R1-Zero-Like Training arXiv:2503.20783 · Between Underthinking and Overthinking arXiv:2505.00127 · Are Reasoning Models More Prone to Hallucination? arXiv:2505.23646 · The Reasoning Trap arXiv:2510.22977 · Marco-o1 v2 arXiv:2503.01461 · Hán Dān Xué Bù (Mimicry) or Qīng Chū Yú Lán (Mastery)? arXiv:2601.05019 · Bespoke Labs (2025) · DeepSeek-AI arXiv:2501.12948
+  </div>
+</div>

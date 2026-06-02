@@ -1,0 +1,61 @@
+
+<div style="background:#ffffff;padding:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:680px">
+  <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#B4B2A9;margin-bottom:4px">Slide 2 · Knowledge Distillation: The Field Today</div>
+  <div style="font-size:17px;font-weight:700;color:#2C2C2A;margin-bottom:2px">From model compression to reasoning transfer</div>
+  <div style="font-size:12px;color:#888780;margin-bottom:20px">Where the field stands and what it still struggles with</div>
+
+  <div style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#888780;margin-bottom:8px">Three eras of distillation</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-bottom:20px;border:1px solid #D3D1C7;border-radius:6px;overflow:hidden">
+    <div style="padding:12px;border-right:1px solid #D3D1C7">
+      <div style="font-size:9px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Era 1 — 2015–2020</div>
+      <div style="font-size:11px;font-weight:600;color:#2C2C2A;margin-bottom:4px">Compression</div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Hinton et al. (2015): small model mimics large model's <em>soft output probabilities</em>. Goal: reduce size, preserve accuracy. No reasoning transfer.</div>
+    </div>
+    <div style="padding:12px;border-right:1px solid #D3D1C7;background:#F9F8F5">
+      <div style="font-size:9px;font-weight:700;color:#854F0B;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Era 2 — 2021–2023</div>
+      <div style="font-size:11px;font-weight:600;color:#2C2C2A;margin-bottom:4px">Task Transfer</div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Alpaca, WizardLM: distill GPT-4 <em>instruction-following</em> via SFT on synthetic data. Teacher output as training label. Reasoning not the focus.</div>
+    </div>
+    <div style="padding:12px;background:#E6F1FB">
+      <div style="font-size:9px;font-weight:700;color:#185FA5;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Era 3 — 2024–2025</div>
+      <div style="font-size:11px;font-weight:600;color:#185FA5;margin-bottom:4px">Reasoning Transfer ← Now</div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Sky-T1, R1-Distill, Bespoke-Stratos: distill <em>long chain-of-thought reasoning traces</em>. Goal: clone emergent reasoning behavior, not just answers.</div>
+    </div>
+  </div>
+
+  <div style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#888780;margin-bottom:8px">What made reasoning transfer possible</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+    <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:6px;padding:11px">
+      <div style="font-size:10px;font-weight:700;color:#2C2C2A;margin-bottom:5px">Long CoT traces as training signal</div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Not just the answer — the full internal monologue. Reasoning chains can span thousands to tens of thousands of tokens, exposing the student to <em>how</em> the teacher thinks, not just <em>what</em> it concludes.</div>
+    </div>
+    <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:6px;padding:11px">
+      <div style="font-size:10px;font-weight:700;color:#2C2C2A;margin-bottom:5px">Open strong teachers (2025)</div>
+      <div style="font-size:10px;color:#5F5E5A;line-height:1.5">DeepSeek-R1 released MIT-licensed with explicit distillation permission. First time a near-frontier reasoning model was legally and practically available as a teacher.</div>
+    </div>
+  </div>
+
+  <div style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#888780;margin-bottom:8px">What the field still struggles with</div>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
+    <div style="display:flex;gap:8px;align-items:flex-start">
+      <span style="display:inline-block;padding:1px 7px;border-radius:3px;font-size:9px;font-weight:600;background:#FCEBEB;color:#A32D2D;border:1px solid #E24B4A;flex-shrink:0;margin-top:1px">Hard limit</span>
+      <div style="font-size:10px;color:#444441;line-height:1.5"><strong>Teacher ceiling:</strong> SFT-distilled students cannot exceed what the teacher can demonstrate. ~13% of hard problems are unsolvable even with N=64 teacher samples. <span style="color:#888780">HEAL, arXiv:2603.10359 (2026)</span></div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:flex-start">
+      <span style="display:inline-block;padding:1px 7px;border-radius:3px;font-size:9px;font-weight:600;background:#FAEEDA;color:#854F0B;border:1px solid #EF9F27;flex-shrink:0;margin-top:1px">Bias</span>
+      <div style="font-size:10px;color:#444441;line-height:1.5"><strong>GRPO length bias:</strong> RL training inflates response length, especially for wrong answers. Longer ≠ better — overthinking and underthinking are both documented failure modes. <span style="color:#888780">arXiv:2503.20783 · arXiv:2505.00127</span></div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:flex-start">
+      <span style="display:inline-block;padding:1px 7px;border-radius:3px;font-size:9px;font-weight:600;background:#FAEEDA;color:#854F0B;border:1px solid #EF9F27;flex-shrink:0;margin-top:1px">Domain gap</span>
+      <div style="font-size:10px;color:#444441;line-height:1.5"><strong>Verifiable domains only:</strong> gains concentrate in math, code, STEM. Open-ended tasks, function calling, multi-turn conversation remain weak. <span style="color:#888780">DeepSeek-R1, arXiv:2501.12948, §4</span></div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:flex-start">
+      <span style="display:inline-block;padding:1px 7px;border-radius:3px;font-size:9px;font-weight:600;background:#FCEBEB;color:#A32D2D;border:1px solid #E24B4A;flex-shrink:0;margin-top:1px">Nuanced</span>
+      <div style="font-size:10px;color:#444441;line-height:1.5"><strong>Hallucination — pipeline-dependent:</strong> distillation-only or RL without cold-start can <em>worsen</em> hallucination vs backbone; full SFT+RL pipelines can reduce it. <span style="color:#888780">arXiv:2505.23646 · arXiv:2510.22977</span></div>
+    </div>
+  </div>
+
+  <div style="font-size:9px;color:#B4B2A9;border-top:1px solid #F1EFE8;padding-top:8px">
+    Sources: Hinton et al. (2015) · DeepSeek-AI, "DeepSeek-R1," arXiv:2501.12948 · HEAL arXiv:2603.10359 (2026) · Understanding R1-Zero-Like Training arXiv:2503.20783 · Between Underthinking and Overthinking arXiv:2505.00127 · Are Reasoning Models More Prone to Hallucination? arXiv:2505.23646
+  </div>
+</div>

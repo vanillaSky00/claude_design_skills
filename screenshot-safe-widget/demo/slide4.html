@@ -1,0 +1,203 @@
+
+<div style="background:#ffffff;padding:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:680px">
+
+  <!-- Top label -->
+  <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#B4B2A9;margin-bottom:16px">Slide 4 · Comprehensive Analysis</div>
+
+  <!-- Row 1: Comparison Table (full width) -->
+  <div style="margin-bottom:20px">
+    <div style="font-size:11px;font-weight:600;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Model overview</div>
+    <table style="width:100%;border-collapse:collapse;font-size:11px">
+      <thead>
+        <tr style="border-bottom:1.5px solid #B4B2A9">
+          <th style="padding:8px 10px;font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:#888780;text-align:left;width:20%">Attribute</th>
+          <th style="padding:8px 10px;font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:#185FA5;text-align:center;width:20%">Sky-T1-32B</th>
+          <th style="padding:8px 10px;font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:#854F0B;text-align:center;width:20%">DeepSeek-R1-Zero</th>
+          <th style="padding:8px 10px;font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:#854F0B;text-align:center;width:20%">DeepSeek-R1</th>
+          <th style="padding:8px 10px;font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:#534AB7;text-align:center;width:20%;background:#F5F9FE">Bespoke-Stratos-32B</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #F1EFE8">
+          <td style="padding:7px 10px;color:#888780;font-size:10px">Base model</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center">Qwen2.5-32B</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center">DeepSeek-V3-Base</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center">DeepSeek-V3-Base</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center;background:#F5F9FE">Qwen2.5-32B</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F1EFE8">
+          <td style="padding:7px 10px;color:#888780;font-size:10px">Teacher</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center">QwQ-32B-Preview</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center">Self (RL only)</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center">Cold-start SFT + RL<br>rejection SFT + final RL</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center;background:#F5F9FE">DeepSeek-R1</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F1EFE8">
+          <td style="padding:7px 10px;color:#888780;font-size:10px">Training</td>
+          <td style="padding:7px 10px;text-align:center"><span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;background:#E6F1FB;color:#185FA5;border:1px solid #378ADD">SFT only</span></td>
+          <td style="padding:7px 10px;text-align:center"><span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;background:#FAEEDA;color:#854F0B;border:1px solid #EF9F27">RL only (GRPO)</span></td>
+          <td style="padding:7px 10px;text-align:center"><span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;background:#FAEEDA;color:#854F0B;border:1px solid #EF9F27">SFT + RL</span></td>
+          <td style="padding:7px 10px;text-align:center;background:#F5F9FE"><span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;background:#EEEDFE;color:#534AB7;border:1px solid #7F77DD">SFT only</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #F1EFE8">
+          <td style="padding:7px 10px;color:#888780;font-size:10px">Dataset size</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center">17k samples</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center">RL rollouts</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center">RL + SFT mix</td>
+          <td style="padding:7px 10px;color:#444441;text-align:center;background:#F5F9FE">17k samples</td>
+        </tr>
+        <tr>
+          <td style="padding:7px 10px;color:#888780;font-size:10px">Open weights</td>
+          <td style="padding:7px 10px;text-align:center"><span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;background:#E1F5EE;color:#0F6E56;border:1px solid #1D9E75">Yes</span></td>
+          <td style="padding:7px 10px;text-align:center"><span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;background:#E1F5EE;color:#0F6E56;border:1px solid #1D9E75">Yes</span></td>
+          <td style="padding:7px 10px;text-align:center"><span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;background:#E1F5EE;color:#0F6E56;border:1px solid #1D9E75">Yes</span></td>
+          <td style="padding:7px 10px;text-align:center;background:#F5F9FE"><span style="display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;background:#E1F5EE;color:#0F6E56;border:1px solid #1D9E75">Yes</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Row 2: Three small charts side by side -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+
+    <!-- Chart A: AIME 2024 -->
+    <div>
+      <div style="font-size:11px;font-weight:600;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">AIME 2024 Pass@1</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div>
+          <div style="font-size:9px;color:#888780;margin-bottom:2px">GPT-4o</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:11.6%;background:#B4B2A9;height:100%;border-radius:2px"></div>
+            </div>
+            <span style="font-size:9px;color:#888780;width:28px;text-align:right">9.3%</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#185FA5;margin-bottom:2px">Sky-T1</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:54.1%;background:#378ADD;height:100%;border-radius:2px"></div>
+            </div>
+            <span style="font-size:9px;color:#185FA5;width:28px;text-align:right;font-weight:600">43.3%</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#534AB7;margin-bottom:2px">Bespoke-Stratos</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:79.1%;background:#7F77DD;height:100%;border-radius:2px"></div>
+            </div>
+            <span style="font-size:9px;color:#534AB7;width:28px;text-align:right;font-weight:600">63.3%</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#854F0B;margin-bottom:2px">DeepSeek-R1-Zero</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:97.5%;background:#EF9F27;height:100%;border-radius:2px"></div>
+            </div>
+            <span style="font-size:9px;color:#854F0B;width:28px;text-align:right;font-weight:600">77.9%</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#854F0B;margin-bottom:2px">DeepSeek-R1</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:100%;background:#BA7517;height:100%;border-radius:2px;display:flex;align-items:center;justify-content:flex-end;padding-right:4px">
+                <span style="font-size:9px;color:#fff;font-weight:700">79.8%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#888780;margin-bottom:2px">o1 (OpenAI)</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:99.2%;background:#D3D1C7;height:100%;border-radius:2px;display:flex;align-items:center;justify-content:flex-end;padding-right:4px">
+                <span style="font-size:9px;color:#5F5E5A;font-weight:600">79.2%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart B: MATH500 -->
+    <div>
+      <div style="font-size:11px;font-weight:600;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">MATH500</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div>
+          <div style="font-size:9px;color:#888780;margin-bottom:2px">Qwen2.5-32B (base)</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:78.4%;background:#B4B2A9;height:100%;border-radius:2px"></div>
+            </div>
+            <span style="font-size:9px;color:#888780;width:28px;text-align:right">76.2%</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#185FA5;margin-bottom:2px">Sky-T1-32B</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:84.8%;background:#378ADD;height:100%;border-radius:2px"></div>
+            </div>
+            <span style="font-size:9px;color:#185FA5;width:28px;text-align:right;font-weight:600">82.4%</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#534AB7;margin-bottom:2px">Bespoke-Stratos</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:95.7%;background:#7F77DD;height:100%;border-radius:2px"></div>
+            </div>
+            <span style="font-size:9px;color:#534AB7;width:28px;text-align:right;font-weight:600">93.0%</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#854F0B;margin-bottom:2px">DeepSeek-R1</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:100%;background:#BA7517;height:100%;border-radius:2px;display:flex;align-items:center;justify-content:flex-end;padding-right:4px">
+                <span style="font-size:9px;color:#fff;font-weight:700">97.3%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#888780;margin-bottom:2px">o1-preview</div>
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;background:#F1EFE8;border-radius:2px;height:16px;position:relative">
+              <div style="width:83.7%;background:#D3D1C7;height:100%;border-radius:2px"></div>
+            </div>
+            <span style="font-size:9px;color:#888780;width:28px;text-align:right">81.4%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart C: Dataset size vs performance -->
+    <div>
+      <div style="font-size:11px;font-weight:600;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">Dataset size</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#F9F8F5;border-radius:6px;padding:10px;text-align:center;border:1px solid #D3D1C7">
+          <div style="font-size:20px;font-weight:700;color:#B4B2A9">800k</div>
+          <div style="font-size:9px;color:#888780;margin-top:2px">R1-Distill-Qwen-32B<br>DeepSeek's own distill</div>
+        </div>
+        <div style="display:flex;justify-content:center;align-items:center;gap:4px">
+          <div style="height:1px;width:30px;background:#D3D1C7"></div>
+          <span style="font-size:9px;color:#B4B2A9">47× fewer →</span>
+          <div style="height:1px;width:30px;background:#D3D1C7"></div>
+        </div>
+        <div style="background:#F5F9FE;border-radius:6px;padding:10px;text-align:center;border:1px solid #378ADD">
+          <div style="font-size:20px;font-weight:700;color:#185FA5">17k</div>
+          <div style="font-size:9px;color:#378ADD;margin-top:2px">Sky-T1 baseline<br>Bespoke approaches R1-Distill</div>
+        </div>
+        <div style="background:#F9F8F5;border-radius:6px;padding:8px;text-align:center;border:1px solid #D3D1C7">
+          <div style="font-size:9px;color:#5F5E5A;font-style:italic">R1-Zero: no labelled<br>dataset — pure RL</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

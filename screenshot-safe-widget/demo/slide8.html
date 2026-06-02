@@ -1,0 +1,112 @@
+
+<div style="background:#ffffff;padding:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:680px">
+  <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#B4B2A9;margin-bottom:4px">Slide 8 · Distinctive Contributions & Core Insights</div>
+  <div style="font-size:17px;font-weight:700;color:#2C2C2A;margin-bottom:2px">What each lab uniquely proved</div>
+  <div style="font-size:12px;color:#888780;margin-bottom:16px">Sourced claims — one unique finding per team</div>
+
+  <div style="display:flex;align-items:center;gap:0;margin-bottom:16px;background:#F9F8F5;border:1px solid #D3D1C7;border-radius:6px;overflow:hidden">
+    <div style="padding:8px 10px;flex:1;text-align:center;border-right:1px solid #D3D1C7">
+      <div style="font-size:9px;font-weight:700;color:#854F0B;text-transform:uppercase;letter-spacing:.05em">R1-Zero</div>
+      <div style="font-size:10px;color:#444441;font-weight:600;margin-top:1px">Discovers</div>
+    </div>
+    <div style="font-size:11px;color:#B4B2A9;padding:0 4px">→</div>
+    <div style="padding:8px 10px;flex:1;text-align:center;border-right:1px solid #D3D1C7">
+      <div style="font-size:9px;font-weight:700;color:#185FA5;text-transform:uppercase;letter-spacing:.05em">R1</div>
+      <div style="font-size:10px;color:#444441;font-weight:600;margin-top:1px">Stabilizes</div>
+    </div>
+    <div style="font-size:11px;color:#B4B2A9;padding:0 4px">→</div>
+    <div style="padding:8px 10px;flex:1;text-align:center;border-right:1px solid #D3D1C7">
+      <div style="font-size:9px;font-weight:700;color:#0F6E56;text-transform:uppercase;letter-spacing:.05em">Sky-T1</div>
+      <div style="font-size:10px;color:#444441;font-weight:600;margin-top:1px">Clones cheaply</div>
+    </div>
+    <div style="font-size:11px;color:#B4B2A9;padding:0 4px">→</div>
+    <div style="padding:8px 10px;flex:1;text-align:center">
+      <div style="font-size:9px;font-weight:700;color:#534AB7;text-transform:uppercase;letter-spacing:.05em">Bespoke</div>
+      <div style="font-size:10px;color:#444441;font-weight:600;margin-top:1px">Improves the bottleneck</div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:9px">
+
+    <!-- R1-Zero -->
+    <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden">
+      <div style="background:#FAEEDA;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #D3D1C7">
+        <div style="font-size:11px;font-weight:700;color:#854F0B">DeepSeek-R1-Zero — Reasoning emerges from incentives, not instructions</div>
+        <span style="padding:1px 7px;border-radius:3px;font-size:9px;font-weight:700;background:#EF9F27;color:#fff;flex-shrink:0;margin-left:8px">NOVEL</span>
+      </div>
+      <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div>
+          <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:3px">What they proved</div>
+          <div style="font-size:10px;color:#5F5E5A;line-height:1.5">First open model to show advanced reasoning — self-reflection, backtracking — can emerge from <strong>pure RL with zero supervised CoT data</strong>. Starting from DeepSeek-V3-Base, GRPO with <strong>rule-based accuracy reward + format reward</strong> (no neural reward model, no human demonstrations) raised AIME 2024 from <strong>15.6% → 77.9%</strong> pass@1 and <strong>86.7%</strong> cons@64.</div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:3px">The unique finding</div>
+          <div style="background:#FAEEDA;border-radius:4px;padding:8px;font-size:10px;color:#854F0B;font-style:italic;line-height:1.5;margin-bottom:5px">"Wait, wait. Wait. That's an aha moment I can flag here…" — R1-Zero self-correction, Table 3. Not designed in. Incentivized out.</div>
+          <div style="font-size:9px;color:#888780">DeepSeek-AI (2025) arXiv:2501.12948 (current), §3 + Table 3<br>77.9% pass@1 from current arXiv version</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- R1 -->
+    <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden">
+      <div style="background:#E6F1FB;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #D3D1C7">
+        <div style="font-size:11px;font-weight:700;color:#185FA5">DeepSeek-R1 — Multi-stage pipeline stabilizes what pure RL broke</div>
+        <span style="padding:1px 7px;border-radius:3px;font-size:9px;font-weight:700;background:#378ADD;color:#fff;flex-shrink:0;margin-left:8px">PIPELINE</span>
+      </div>
+      <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div>
+          <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:3px">What they proved</div>
+          <div style="font-size:10px;color:#5F5E5A;line-height:1.5">R1-Zero suffered language mixing, poor readability, repetition. R1's 4-stage pipeline (cold-start SFT → RL → rejection SFT → RL) fixed all three while <strong>raising</strong> final scores to <strong>79.8% AIME, 97.3% MATH500, 2029 Codeforces Elo</strong>. Then distilled to six open checkpoints: 1.5B, 7B, 8B, 14B, 32B, 70B (MIT license).</div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:3px">The unique finding</div>
+          <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Cold-start SFT before RL prevents instability. Language consistency reward suppresses mixing. ~800k SFT samples (600k reasoning + 200k general) restore general capability that pure RL erodes — <em>without</em> sacrificing reasoning scores.</div>
+          <div style="font-size:9px;color:#888780;margin-top:4px">DeepSeek-AI (2025) arXiv:2501.12948, §4 + Table 4<br>Distill sizes: GitHub deepseek-ai/DeepSeek-R1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sky-T1 -->
+    <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden">
+      <div style="background:#E1F5EE;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #D3D1C7">
+        <div style="font-size:11px;font-weight:700;color:#0F6E56">Sky-T1 (NovaSky) — Data mixture and trace format are first-class variables</div>
+        <span style="padding:1px 7px;border-radius:3px;font-size:9px;font-weight:700;background:#1D9E75;color:#fff;flex-shrink:0;margin-left:8px">$450</span>
+      </div>
+      <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div>
+          <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:3px">What they proved</div>
+          <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Competitive reasoning cloned from QwQ-32B-Preview via SFT on 17k samples. <strong>19 wall-clock hours on 8×H100 (~152 GPU-hours) for $450</strong> at Lambda Cloud. First fully open (data + code + weights) dual-domain model. AIME 43.3%, on par with o1-preview (40.0%).</div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:3px">The unique finding</div>
+          <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Adding code data <em>naively</em> dropped AIME <strong>43.3% → 36.7%</strong>. GPT-4o-mini reformatting lifted code parse accuracy from <strong>~25% → 90%+</strong>. Trace format and data mixture, not just volume or cost, determine outcome.</div>
+          <div style="font-size:9px;color:#888780;margin-top:4px">NovaSky Team (2025) novasky-ai.github.io/posts/sky-t1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bespoke -->
+    <div style="border:1px solid #D3D1C7;border-radius:6px;overflow:hidden">
+      <div style="background:#EEEDFE;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #D3D1C7">
+        <div style="font-size:11px;font-weight:700;color:#534AB7">Bespoke Labs — The bottleneck is the verifier, not the volume</div>
+        <span style="padding:1px 7px;border-radius:3px;font-size:9px;font-weight:700;background:#7F77DD;color:#fff;flex-shrink:0;margin-left:8px">KEY FIX</span>
+      </div>
+      <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div>
+          <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:3px">What they proved</div>
+          <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Replacing Sky-T1's regex/sympy verifier with GPT-4o-mini answer checking lifted correct-trace retention from <strong>25% → 73%</strong>. With 17k samples and DeepSeek-R1 as teacher, Bespoke-Stratos reached <strong>63.3% AIME, 93.0% MATH500</strong> — 47× fewer examples than DeepSeek's own distill checkpoint (800k).</div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:3px">The unique finding</div>
+          <div style="font-size:10px;color:#5F5E5A;line-height:1.5">Sky-T1 was silently discarding ~75% of correct training examples due to a faulty parser. The distillation bottleneck is <strong>verification accuracy</strong>, not dataset size. Also showed 7B distillation works with high-quality data — contradicting Sky-T1's "little gain below 32B" observation, attributed to higher trace quality.</div>
+          <div style="font-size:9px;color:#888780;margin-top:4px">Bespoke Labs (2025) bespokelabs.ai/blog/bespoke-stratos</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="font-size:9px;color:#B4B2A9;border-top:1px solid #F1EFE8;padding-top:8px;margin-top:14px">
+    Sources: DeepSeek-AI (2025) arXiv:2501.12948 (current + v1) · GitHub deepseek-ai/DeepSeek-R1 · NovaSky Team (2025) novasky-ai.github.io/posts/sky-t1 · Bespoke Labs (2025) bespokelabs.ai/blog/bespoke-stratos-the-unreasonable-effectiveness-of-reasoning-distillation
+  </div>
+</div>

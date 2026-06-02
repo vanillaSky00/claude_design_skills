@@ -1,0 +1,111 @@
+
+<div style="background:#ffffff;padding:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:680px">
+<div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#B4B2A9;margin-bottom:14px">Slide 7 · Bespoke-Stratos-32B</div>
+
+<div style="font-size:11px;font-weight:600;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Three targeted changes from Sky-T1</div>
+<div style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px">
+  <div style="display:grid;grid-template-columns:1fr 26px 1fr;align-items:stretch">
+    <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:6px 0 0 6px;padding:9px 11px">
+      <div style="font-size:9px;color:#888780;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">Sky-T1</div>
+      <div style="font-size:11px;font-weight:600;color:#444441">QwQ-32B-Preview</div>
+      <div style="font-size:9px;color:#888780;margin-top:2px">Weaker teacher, less coherent traces</div>
+    </div>
+    <div style="background:#534AB7;display:flex;align-items:center;justify-content:center"><span style="font-size:10px;color:#fff;font-weight:700">→</span></div>
+    <div style="background:#EEEDFE;border:1px solid #7F77DD;border-radius:0 6px 6px 0;padding:9px 11px">
+      <div style="font-size:9px;color:#534AB7;text-transform:uppercase;letter-spacing:.04em;font-weight:600;margin-bottom:2px">Bespoke</div>
+      <div style="font-size:11px;font-weight:600;color:#534AB7">DeepSeek-R1</div>
+      <div style="font-size:9px;color:#7F77DD;margin-top:2px">Stronger teacher, richer reasoning traces</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 26px 1fr;align-items:stretch">
+    <div style="background:#F9F8F5;border:1px solid #D3D1C7;border-radius:6px 0 0 6px;padding:9px 11px">
+      <div style="font-size:9px;color:#888780;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">Sky-T1</div>
+      <div style="font-size:11px;font-weight:600;color:#444441">GPT-4o-mini reformat step</div>
+      <div style="font-size:9px;color:#888780;margin-top:2px">Required — QwQ traces were messy</div>
+    </div>
+    <div style="background:#534AB7;display:flex;align-items:center;justify-content:center"><span style="font-size:10px;color:#fff;font-weight:700">→</span></div>
+    <div style="background:#EEEDFE;border:1px solid #7F77DD;border-radius:0 6px 6px 0;padding:9px 11px">
+      <div style="font-size:9px;color:#534AB7;text-transform:uppercase;letter-spacing:.04em;font-weight:600;margin-bottom:2px">Bespoke</div>
+      <div style="font-size:11px;font-weight:600;color:#534AB7">Reformatting removed</div>
+      <div style="font-size:9px;color:#7F77DD;margin-top:2px">R1 traces already coherent and parseable</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 26px 1fr;align-items:stretch">
+    <div style="background:#FCEBEB;border:1px solid #E24B4A;border-radius:6px 0 0 6px;padding:9px 11px">
+      <div style="font-size:9px;color:#A32D2D;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">Sky-T1</div>
+      <div style="font-size:11px;font-weight:600;color:#A32D2D">Regex + sympy verifier</div>
+      <div style="font-size:9px;color:#E24B4A;margin-top:2px">Silently discarded 75% of correct solutions</div>
+    </div>
+    <div style="background:#534AB7;display:flex;align-items:center;justify-content:center"><span style="font-size:10px;color:#fff;font-weight:700">→</span></div>
+    <div style="background:#E1F5EE;border:1px solid #1D9E75;border-radius:0 6px 6px 0;padding:9px 11px">
+      <div style="font-size:9px;color:#0F6E56;text-transform:uppercase;letter-spacing:.04em;font-weight:600;margin-bottom:2px">Bespoke</div>
+      <div style="font-size:11px;font-weight:600;color:#0F6E56">GPT-4o-mini verification</div>
+      <div style="font-size:9px;color:#1D9E75;margin-top:2px">Retention jumped 25% → 73%</div>
+    </div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+  <div>
+    <div style="font-size:11px;font-weight:600;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Correct solution retention</div>
+    <div style="margin-bottom:7px">
+      <div style="font-size:9px;color:#A32D2D;font-weight:600;margin-bottom:3px">Sky-T1 — regex/sympy</div>
+      <div style="background:#F1EFE8;border-radius:3px;height:24px;position:relative;overflow:hidden">
+        <div style="width:25%;background:#E24B4A;height:100%;border-radius:3px;display:flex;align-items:center;justify-content:center"><span style="font-size:10px;font-weight:700;color:#fff">25%</span></div>
+        <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:9px;color:#B4B2A9">75% discarded</span>
+      </div>
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="font-size:9px;color:#0F6E56;font-weight:600;margin-bottom:3px">Bespoke — GPT-4o-mini</div>
+      <div style="background:#F1EFE8;border-radius:3px;height:24px;position:relative;overflow:hidden">
+        <div style="width:73%;background:#1D9E75;height:100%;border-radius:3px;display:flex;align-items:center;justify-content:center"><span style="font-size:10px;font-weight:700;color:#fff">73%</span></div>
+        <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:9px;color:#888780">27% discarded</span>
+      </div>
+    </div>
+    <div style="font-size:11px;font-weight:600;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Training data vs DeepSeek's distill</div>
+    <div style="display:flex;align-items:center;gap:7px">
+      <div style="flex:1;background:#F9F8F5;border:1px solid #D3D1C7;border-radius:6px;padding:8px;text-align:center">
+        <div style="font-size:18px;font-weight:700;color:#B4B2A9">800k</div>
+        <div style="font-size:9px;color:#888780;margin-top:1px">R1-Distill-Qwen-32B</div>
+      </div>
+      <div style="text-align:center;flex-shrink:0"><div style="font-size:13px;font-weight:700;color:#534AB7">47×</div><div style="font-size:8px;color:#888780">fewer</div></div>
+      <div style="flex:1;background:#EEEDFE;border:1px solid #7F77DD;border-radius:6px;padding:8px;text-align:center">
+        <div style="font-size:18px;font-weight:700;color:#534AB7">17k</div>
+        <div style="font-size:9px;color:#7F77DD;margin-top:1px">Bespoke-Stratos</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div style="font-size:11px;font-weight:600;color:#888780;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Benchmark — Bespoke vs Sky-T1 vs o1</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div>
+        <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:4px">AIME 2024</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#888780;width:66px;flex-shrink:0">o1-preview</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:50%;background:#D3D1C7;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#888780;width:26px;text-align:right">40.0</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#185FA5;width:66px;flex-shrink:0">Sky-T1</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:54.1%;background:#378ADD;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#185FA5;width:26px;text-align:right;font-weight:600">43.3</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#534AB7;width:66px;flex-shrink:0;font-weight:700">Bespoke</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:79.1%;background:#7F77DD;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#534AB7;width:26px;text-align:right;font-weight:700">63.3</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#854F0B;width:66px;flex-shrink:0">R1-Distill</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:83.5%;background:#EF9F27;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#854F0B;width:26px;text-align:right;font-weight:600">66.7</span></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:4px">MATH500</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#888780;width:66px;flex-shrink:0">o1-preview</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:83.7%;background:#D3D1C7;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#888780;width:26px;text-align:right">81.4</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#185FA5;width:66px;flex-shrink:0">Sky-T1</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:84.8%;background:#378ADD;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#185FA5;width:26px;text-align:right;font-weight:600">82.4</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#534AB7;width:66px;flex-shrink:0;font-weight:700">Bespoke</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:95.6%;background:#7F77DD;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#534AB7;width:26px;text-align:right;font-weight:700">93.0</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#854F0B;width:66px;flex-shrink:0">R1-Distill</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:97%;background:#EF9F27;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#854F0B;width:26px;text-align:right;font-weight:600">94.3</span></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;color:#444441;margin-bottom:4px">LiveCodeBench Medium</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#888780;width:66px;flex-shrink:0">o1-preview</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:72.9%;background:#D3D1C7;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#888780;width:26px;text-align:right">54.9</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#185FA5;width:66px;flex-shrink:0">Sky-T1</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:75.5%;background:#378ADD;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#185FA5;width:26px;text-align:right;font-weight:600">56.8</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:9px;color:#534AB7;width:66px;flex-shrink:0;font-weight:700">Bespoke</span><div style="flex:1;background:#F1EFE8;border-radius:2px;height:13px"><div style="width:99.9%;background:#7F77DD;height:100%;border-radius:2px"></div></div><span style="font-size:9px;color:#534AB7;width:26px;text-align:right;font-weight:700">75.2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
